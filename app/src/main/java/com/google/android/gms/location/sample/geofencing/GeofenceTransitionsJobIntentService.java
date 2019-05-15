@@ -27,11 +27,22 @@ import android.os.Build;
 import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
+import com.google.android.gms.location.sample.geofencing.respon_login.ResponseLogin;
+import com.google.android.gms.location.sample.geofencing.respon_login.User;
+import com.google.android.gms.location.sample.geofencing.respon_login.responnse_read.ResponseRead;
+import com.google.android.gms.location.sample.geofencing.respon_login.response_create.ResponseCreate;
+import com.google.android.gms.location.sample.geofencing.rest.ApiClient;
+import com.google.android.gms.location.sample.geofencing.rest.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +56,18 @@ import java.util.List;
  */
 public class GeofenceTransitionsJobIntentService extends JobIntentService {
 
+    ApiInterface mApiInterface = ApiClient.getInstance();
+
+
+
+
     private static final int JOB_ID = 573;
 
     private static final String TAG = "GeofenceTransitionsIS";
 
     private static final String CHANNEL_ID = "channel_01";
+
+
 
     /**
      * Convenience method for enqueuing work in to this service.
@@ -87,7 +105,30 @@ public class GeofenceTransitionsJobIntentService extends JobIntentService {
             String geofenceTransitionDetails = getGeofenceTransitionDetails(geofenceTransition,
                     triggeringGeofences);
 
-            // Send notification and log the transition details.
+
+            Call<ResponseCreate> testabsen = mApiInterface.getkreatif(
+
+                    "hadir" , LoginActivity.username
+            );
+
+            testabsen.enqueue(new Callback<ResponseCreate>() {
+                @Override
+                public void onResponse(Call<ResponseCreate> call, Response<ResponseCreate> response) {
+
+
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseCreate> call, Throwable t) {
+                    Toast.makeText(GeofenceTransitionsJobIntentService.this, "YOU DIED" , Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+
+
+                // Send notification and log the transition details.
             sendNotification(geofenceTransitionDetails);
             Log.i(TAG, geofenceTransitionDetails);
         } else {

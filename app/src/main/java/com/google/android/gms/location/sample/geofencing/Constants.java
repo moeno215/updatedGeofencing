@@ -34,8 +34,7 @@ final class Constants {
     static final String GEOFENCES_ADDED_KEY = PACKAGE_NAME + ".GEOFENCES_ADDED_KEY";
 
     /**
-     * Used to set an expiration time for a geofence. After this amount of time Location Services
-     * stops tracking the geofence.
+      * stops tracking the geofence.
      */
     private static final long GEOFENCE_EXPIRATION_IN_HOURS = 12;
 
@@ -53,6 +52,10 @@ final class Constants {
 
     static {
         // San Francisco International Airport.
-        BAY_AREA_LANDMARKS.put("IDN", new LatLng(-6.197055, 106.795948));
+        BAY_AREA_LANDMARKS.put("Wahana", new LatLng(-6.155141,106.836603));
+//        BAY_AREA_LANDMARKS.put("Dinas", new LatLng(-6.154847, 106.836458));
+        BAY_AREA_LANDMARKS.put("IDN", new LatLng(-6.197297, 106.795952));
+
+
     }
 }

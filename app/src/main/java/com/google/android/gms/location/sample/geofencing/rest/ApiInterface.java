@@ -4,6 +4,7 @@ package com.google.android.gms.location.sample.geofencing.rest;
 //import com.example.plisbisageobajing.respon_login.responnse_read.ResponseRead;
 //import com.example.plisbisageobajing.respon_login.response_create.ResponseCreate;
 import com.google.android.gms.location.sample.geofencing.respon_login.ResponseLogin;
+import com.google.android.gms.location.sample.geofencing.respon_login.User;
 import com.google.android.gms.location.sample.geofencing.respon_login.responnse_read.ResponseRead;
 import com.google.android.gms.location.sample.geofencing.respon_login.response_create.ResponseCreate;
 
@@ -26,7 +27,7 @@ public interface ApiInterface {
 
 
     @GET(Constant.READ)
-    Call<ResponseRead> getData();
+    Call<ResponseRead> getData(String read);
 
     @FormUrlEncoded
     @POST(Constant.LOGIN)
@@ -34,5 +35,8 @@ public interface ApiInterface {
             @Field("edtusername") String first,
             @Field("edtpassword") String last
     );
+    Call<User> getUser();
+
+
 
 }

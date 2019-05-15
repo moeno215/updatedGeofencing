@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 
 import com.google.android.gms.location.sample.geofencing.respon_login.ResponseLogin;
+import com.google.android.gms.location.sample.geofencing.respon_login.User;
 import com.google.android.gms.location.sample.geofencing.rest.ApiClient;
 import com.google.android.gms.location.sample.geofencing.rest.ApiInterface;
 
@@ -21,9 +22,11 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+
     EditText etname, etpass;
     Button btn ;
     ApiInterface mApiInterface = ApiClient.getInstance();
+    public static String username ;
 
 
     @Override
@@ -39,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 Call<ResponseLogin> testlogin = mApiInterface.getLog(
                         etname.getText().toString(),
                         etpass.getText().toString());
@@ -48,20 +50,35 @@ public class LoginActivity extends AppCompatActivity {
 
                 testlogin.enqueue(new Callback<ResponseLogin>() {
                     @Override
+
                     public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                         Log.d("login", response.body().toString());
 
                         String status = response.body().getResult();
-                        if (status.equals("1")){
-                            Intent barIntent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(barIntent);
+                        if (status.equals("1")) {
+                            username = etname.getText().toString();
 
-                            Toast.makeText(LoginActivity.this, "Praise the sun" , Toast.LENGTH_SHORT).show();
+//                            String level = response.body().getLevl();
+
+//                            if (level.equals("admin")) {
+//
+//                                Intent barIntent = new Intent(getApplicationContext(), AdminActivity.class);
+//                                startActivity(barIntent);
+//                            } else {
+
+
+
+                                Intent barIntent2 = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(barIntent2);
+
+                            }
+
+
+                            Toast.makeText(LoginActivity.this, "Praise the sun", Toast.LENGTH_SHORT).show();
 
                         }
 
 
-                        }
 
                     @Override
                     public void onFailure(Call<ResponseLogin> call, Throwable t) {

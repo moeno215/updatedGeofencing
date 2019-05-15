@@ -67,7 +67,7 @@ public class User{
 			",edtpassword = '" + edtpassword + '\'' + 
 			",id = '" + id + '\'' + 
 			",edtusername = '" + edtusername + '\'' + 
-			",levl = '" + levl + '\'' + 
+			",levl = '" + levl + '\'' +
 			"}";
 		}
 }

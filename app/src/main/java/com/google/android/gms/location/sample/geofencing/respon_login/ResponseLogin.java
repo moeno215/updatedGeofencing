@@ -44,7 +44,7 @@ public class ResponseLogin{
 			"ResponseLogin{" + 
 			"result = '" + result + '\'' + 
 			",msg = '" + msg + '\'' + 
-			",user = '" + user + '\'' + 
+			",user = '" + user + '\'' +
 			"}";
 		}
 }
